@@ -17,6 +17,7 @@ void Game::Reset()
 	HiddenWord = GenerateNewWord();
 	SetValidLetter();
 	MaxTries = HiddenWord.length() + 3;
+	GameProgress = 0;
 }
 
 FWord Game::getHiddenWord() const
@@ -38,7 +39,10 @@ int Game::getWordLength() const
 {
 	return HiddenWord.length();
 }
-
+int Game::getGameProgess() const
+{
+	return GameProgress;
+}
 void Game::SubmitGuess()
 {
 	NumberOfTries++;
@@ -59,6 +63,7 @@ LetterStatus Game::CheckGuessValidity(FLetter Guess)
 			return LetterStatus::ALREADY_SUBMITTED;
 		}
 		if (ValidLetter[Guess - 97]) {
+			GameProgress++;
 			return LetterStatus::FOUND;
 		}
 		else {
@@ -78,4 +83,14 @@ void Game::SetValidLetter()
 int Game::getValidLetter(int i) const
 {
 	return ValidLetter[i];
+}
+
+bool Game::GameIsWon()
+{
+	if (getGameProgress() == getWordLength()){
+		return true;
+	}
+	else {
+		return false;
+	}
 }
