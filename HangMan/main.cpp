@@ -34,11 +34,13 @@ void GameRoutine()
 {
 	using namespace std;
 	Game NewGame;
-	cout << "Hidden Word: " << NewGame.getHiddenWord() << endl;
-	cout << "Num of tries: " << NewGame.getNumOfTries() << endl;
-	cout << "Max tries: " << NewGame.getMaxTries() << endl;
-	for (int i = 0; i < 26; i++) {
-		cout << "No." << i << " = " << NewGame.getValidLetter(i) << " (" << char(97+i) << ")" << endl;
-	}
+	do {
+		//TODO Print the GUI and refresh it
+		NewGame.SubmitGuess();
+		if (NewGame.GameIsWon()){
+			//TODO Add Game winning message etc
+			break;
+		}
+	} while (NewGame.getNumOfTries() < NewGame.getMaxTries());
 }
 
