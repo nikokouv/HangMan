@@ -27,10 +27,12 @@ public:
 	void SetValidLetter();
 	int getValidLetter(int) const;
 	bool GameIsWon() const;
+	int getGameProgress() const;
 private:
 	FWord HiddenWord;
 	int ValidLetter[26] = {0};
 	int NumberOfTries = 0;
 	int MaxTries;
+	int GameProgress;
 };
 
